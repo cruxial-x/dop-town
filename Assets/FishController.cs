@@ -11,6 +11,7 @@ public class FishController : MonoBehaviour
     private Vector2 direction;
     private Color originalColor;
     private GameObject fishNose;
+    private int originalSortingOrder;
 
     private void Start()
     {
@@ -25,10 +26,13 @@ public class FishController : MonoBehaviour
 
         StartCoroutine(ChangeDirection());
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        originalSortingOrder = spriteRenderer.sortingOrder;
         Color color = spriteRenderer.color;
         originalColor = color;
         color.a = 0.5f;
         spriteRenderer.color = color;
+        // Ignore collisions with the "Default" layer (player)
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 0, true);
     }
 
     private void Update()
@@ -81,5 +85,28 @@ public class FishController : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = originalColor;
         Destroy(gameObject);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Dock")
+        {
+            SetFishVisibilityAndOrder(0f, originalSortingOrder - 1);
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Dock")
+        {
+            SetFishVisibilityAndOrder(0.5f, originalSortingOrder);
+        }
+    }
+
+    private void SetFishVisibilityAndOrder(float alpha, int sortingOrder)
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color color = spriteRenderer.color;
+        color.a = alpha;
+        spriteRenderer.color = color;
+        spriteRenderer.sortingOrder = sortingOrder;
     }
 }
