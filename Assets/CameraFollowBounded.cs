@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
     public Vector3 minCameraPos;
     public Vector3 maxCameraPos;
+    private PixelPerfectCamera pixelPerfectCamera;
+    private int pixelsPerUnit;
 
-    void Update()
+    void Start()
+    {
+        pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
+        pixelsPerUnit = pixelPerfectCamera.assetsPPU;
+    }
+
+    void LateUpdate()
     {
         float posX = Mathf.Clamp(player.position.x, minCameraPos.x, maxCameraPos.x);
         float posY = Mathf.Clamp(player.position.y, minCameraPos.y, maxCameraPos.y);
+
+        // Round the position to the nearest pixel
+        posX = Mathf.Round(posX * pixelsPerUnit) / pixelsPerUnit;
+        posY = Mathf.Round(posY * pixelsPerUnit) / pixelsPerUnit;
 
         transform.position = new Vector3(posX, posY, transform.position.z);
     }
