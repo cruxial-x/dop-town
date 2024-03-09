@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2f; // Speed of the player movement
-    private bool movingUp, movingDown, movingRight, movingLeft; // Flags for movement direction
+    private float moveHorizontal, moveVertical; // Variables for movement direction
     private bool isMoving; // Flag for movement state
     private Animator animator; // Reference to the Animator component
     private Rigidbody2D rb; // Reference to the Rigidbody2D component
@@ -26,50 +26,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movingUp = Input.GetKey(KeyCode.W);
-        movingDown = Input.GetKey(KeyCode.S);
-        movingRight = Input.GetKey(KeyCode.D);
-        movingLeft = Input.GetKey(KeyCode.A);
+        moveHorizontal = Input.GetAxis("Horizontal");
+        moveVertical = Input.GetAxis("Vertical");
 
-        isMoving = movingUp || movingDown || movingRight || movingLeft;
+        isMoving = moveHorizontal != 0 || moveVertical != 0;
 
-        if (movingLeft && !movingRight)
+        if (moveHorizontal < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (movingRight)
+        else if (moveHorizontal > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        animator.SetBool("movingUp", movingUp);
-        animator.SetBool("movingDown", movingDown);
+        animator.SetBool("movingUp", moveVertical > 0);
+        animator.SetBool("movingDown", moveVertical < 0);
         animator.SetBool("isMoving", isMoving);
     }
 
     // FixedUpdate is called once per physics frame
     void FixedUpdate()
     {
-        Vector2 movement = Vector2.zero;
-
-        if (movingUp)
-        {
-            movement.y += moveSpeed;
-        }
-        else if (movingDown)
-        {
-            movement.y -= moveSpeed;
-        }
-
-        if (movingRight)
-        {
-            movement.x += moveSpeed;
-        }
-        else if (movingLeft)
-        {
-            movement.x -= moveSpeed;
-        }
-
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical) * moveSpeed;
         rb.velocity = movement;
     }
 }
