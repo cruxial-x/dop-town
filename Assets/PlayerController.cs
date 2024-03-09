@@ -3,6 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
+public interface IMovementStrategy
+{
+    void HandleMovement(ref float moveHorizontal, ref float moveVertical);
+}
+
+public class DiagonalMovement : IMovementStrategy
+{
+    public void HandleMovement(ref float moveHorizontal, ref float moveVertical)
+    {
+        moveHorizontal = Input.GetAxis("Horizontal");
+        moveVertical = Input.GetAxis("Vertical");
+    }
+}
+
+public class CardinalMovement : IMovementStrategy
+{
+    public void HandleMovement(ref float moveHorizontal, ref float moveVertical)
+    {
+        float inputHorizontal = Input.GetAxis("Horizontal");
+        float inputVertical = Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(inputHorizontal) > Mathf.Abs(inputVertical))
+        {
+            moveHorizontal = inputHorizontal;
+            moveVertical = 0;
+        }
+        else
+        {
+            moveVertical = inputVertical;
+            moveHorizontal = 0;
+        }
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2f; // Speed of the player movement
@@ -11,6 +45,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator; // Reference to the Animator component
     private Rigidbody2D rb; // Reference to the Rigidbody2D component
     private int pixelsPerUnit; // Pixels per unit of camera's PixelPerfectCamera component
+    public bool enableDiagonalMovement = false; // Flag for enabling diagonal movement
+    private IMovementStrategy movementStrategy; // Reference to the movement strategy
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +62,13 @@ public class PlayerController : MonoBehaviour
         int playerLayer = LayerMask.NameToLayer("Default");
         int fishLayer = LayerMask.NameToLayer("Water");
         Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
+        movementStrategy = enableDiagonalMovement ? new DiagonalMovement() : new CardinalMovement();
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveHorizontal = Input.GetAxis("Horizontal");
-        moveVertical = Input.GetAxis("Vertical");
+        movementStrategy.HandleMovement(ref moveHorizontal, ref moveVertical);
 
         isMoving = moveHorizontal != 0 || moveVertical != 0;
 

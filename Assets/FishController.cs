@@ -6,12 +6,12 @@ public class FishController : MonoBehaviour
 {
     public float minSpeed = 1f;
     public float maxSpeed = 5f;
-    public Tilemap waterTilemap;
+    public Bounds moveBounds;
     private float speed;
     private Vector2 direction;
     private Color originalColor;
     private GameObject fishNose;
-    private float collisionCooldown = 0f; 
+    // private float collisionCooldown = 0f; 
 
     private void Start()
     {
@@ -33,25 +33,33 @@ public class FishController : MonoBehaviour
         // Ignore collisions with the "Default" layer (player)
         Physics2D.IgnoreLayerCollision(gameObject.layer, 0, true);
     }
-
+    private void OnDrawGizmos()
+    {
+        // Draw a red box for the moveBounds
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(moveBounds.center, moveBounds.size);
+    }
     private void Update()
     {
         Vector2 offset = fishNose.transform.localPosition; // Offset based on fishNose's local position
         Vector2 newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
         Vector2 nosePosition = newPosition + offset;
-        Vector3Int tilePosition = waterTilemap.WorldToCell(nosePosition);
-        if (waterTilemap.HasTile(tilePosition))
+
+        // Check if the new position is within the move bounds
+        if (moveBounds.Contains(nosePosition))
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            // Round the position to the nearest pixel
+            float pixelsPerUnit = 16; // Change this to match your Sprite's Pixels Per Unit setting
+            newPosition = new Vector2(
+                Mathf.Round(newPosition.x * pixelsPerUnit) / pixelsPerUnit,
+                Mathf.Round(newPosition.y * pixelsPerUnit) / pixelsPerUnit
+            );
+
             rb.MovePosition(newPosition);
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        // Reduce the cooldown over time
-        if (collisionCooldown > 0f)
-        {
-            collisionCooldown -= Time.deltaTime;
         }
     }
 
@@ -89,21 +97,5 @@ public class FishController : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = originalColor;
         Destroy(gameObject);
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Only respond to the collision if the cooldown has expired
-        if (collisionCooldown <= 0f)
-        {
-            // Calculate the reflection of the current direction vector against the collision normal
-            direction = Vector2.Reflect(direction, collision.contacts[0].normal);
-
-            // Rotate the fish to face the new direction
-            float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-
-            // Set the cooldown to prevent immediate subsequent collisions
-            collisionCooldown = 0.5f; // Adjust this value as needed
-        }
     }
 }
