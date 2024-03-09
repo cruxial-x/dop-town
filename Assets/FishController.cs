@@ -11,7 +11,7 @@ public class FishController : MonoBehaviour
     private Vector2 direction;
     private Color originalColor;
     private GameObject fishNose;
-    private int originalSortingOrder;
+    private float collisionCooldown = 0f; 
 
     private void Start()
     {
@@ -26,7 +26,6 @@ public class FishController : MonoBehaviour
 
         StartCoroutine(ChangeDirection());
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        originalSortingOrder = spriteRenderer.sortingOrder;
         Color color = spriteRenderer.color;
         originalColor = color;
         color.a = 0.5f;
@@ -48,6 +47,11 @@ public class FishController : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        // Reduce the cooldown over time
+        if (collisionCooldown > 0f)
+        {
+            collisionCooldown -= Time.deltaTime;
         }
     }
 
@@ -86,27 +90,20 @@ public class FishController : MonoBehaviour
         spriteRenderer.color = originalColor;
         Destroy(gameObject);
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.name == "Dock")
+        // Only respond to the collision if the cooldown has expired
+        if (collisionCooldown <= 0f)
         {
-            SetFishVisibilityAndOrder(0f, originalSortingOrder - 1);
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.name == "Dock")
-        {
-            SetFishVisibilityAndOrder(0.5f, originalSortingOrder);
-        }
-    }
+            // Calculate the reflection of the current direction vector against the collision normal
+            direction = Vector2.Reflect(direction, collision.contacts[0].normal);
 
-    private void SetFishVisibilityAndOrder(float alpha, int sortingOrder)
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color color = spriteRenderer.color;
-        color.a = alpha;
-        spriteRenderer.color = color;
-        spriteRenderer.sortingOrder = sortingOrder;
+            // Rotate the fish to face the new direction
+            float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+
+            // Set the cooldown to prevent immediate subsequent collisions
+            collisionCooldown = 0.5f; // Adjust this value as needed
+        }
     }
 }
