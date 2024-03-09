@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        // Ignore collisions with fish
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int fishLayer = LayerMask.NameToLayer("Fish");
+        Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
     }
 
     // Update is called once per frame
