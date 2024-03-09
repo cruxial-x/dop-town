@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving; // Flag for movement state
     private Animator animator; // Reference to the Animator component
     private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    public bool isFacingLeft; // Flag for player facing direction
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (movingLeft)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            isFacingLeft = true;
         }
         else if (movingRight)
         {
