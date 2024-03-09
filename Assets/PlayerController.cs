@@ -4,74 +4,45 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 1f; // Speed of the player movement
-    private Vector2 gridMoveDirection; // Direction of the grid movement
-    private Vector2 gridPosition; // Current grid position
+    public float moveSpeed = 2f; // Speed of the player movement
+    private bool movingUp, movingDown, movingRight, movingLeft; // Flags for movement direction
+    private bool isMoving; // Flag for movement state
+    private Animator animator; // Reference to the Animator component
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize grid position to the player's starting position
-        gridPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleInput();
-        Move();
+        movingUp = Input.GetKey(KeyCode.W);
+        movingDown = Input.GetKey(KeyCode.S);
+        movingRight = Input.GetKey(KeyCode.D);
+        movingLeft = Input.GetKey(KeyCode.A);
+
+        isMoving = movingUp || movingDown || movingRight || movingLeft;
+
+        if (movingLeft)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (movingRight)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        animator.SetBool("movingUp", movingUp);
+        animator.SetBool("movingDown", movingDown);
+        animator.SetBool("isMoving", isMoving);
     }
 
-    void HandleInput()
+    // FixedUpdate is called once per physics frame
+    void FixedUpdate()
     {
-        // Reset grid move direction
-        gridMoveDirection = Vector2.zero;
-
-        // Check for input and set grid move direction
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            gridMoveDirection = Vector2.up;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            gridMoveDirection = Vector2.down;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            gridMoveDirection = Vector2.left;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            gridMoveDirection = Vector2.right;
-        }
-    }
-
-    void Move()
-    {
-        // If we're not already moving and a move direction has been set
-        if (gridPosition == (Vector2)transform.position && gridMoveDirection != Vector2.zero)
-        {
-            // Calculate the new grid position
-            Vector2 newGridPosition = gridPosition + gridMoveDirection;
-
-            // Start moving towards the new grid position
-            StartCoroutine(MoveTowards(newGridPosition));
-        }
-    }
-
-    IEnumerator MoveTowards(Vector2 destination)
-    {
-        // While we're not at the destination yet
-        while ((Vector2)transform.position != destination)
-        {
-            // Move a step towards the destination
-            transform.position = Vector2.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-
-            // Wait for the next frame
-            yield return null;
-        }
-
-        // Update the current grid position
-        gridPosition = transform.position;
+        Vector2 movement = new((movingRight ? 1 : 0) - (movingLeft ? 1 : 0), (movingUp ? 1 : 0) - (movingDown ? 1 : 0));
+        transform.Translate(moveSpeed * Time.fixedDeltaTime * movement);
     }
 }
