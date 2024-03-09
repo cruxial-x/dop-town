@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Ignore collisions with fish
-        int playerLayer = LayerMask.NameToLayer("Player");
-        int fishLayer = LayerMask.NameToLayer("Fish");
+        int playerLayer = LayerMask.NameToLayer("Default");
+        int fishLayer = LayerMask.NameToLayer("Water");
         Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
     }
 
