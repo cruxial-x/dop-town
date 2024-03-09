@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class PlayerController : MonoBehaviour
     private bool movingUp, movingDown, movingRight, movingLeft; // Flags for movement direction
     private bool isMoving; // Flag for movement state
     private Animator animator; // Reference to the Animator component
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -42,7 +45,26 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called once per physics frame
     void FixedUpdate()
     {
-        Vector2 movement = new((movingRight ? 1 : 0) - (movingLeft ? 1 : 0), (movingUp ? 1 : 0) - (movingDown ? 1 : 0));
-        transform.Translate(moveSpeed * Time.fixedDeltaTime * movement);
+        Vector2 movement = Vector2.zero;
+
+        if (movingUp)
+        {
+            movement.y += moveSpeed;
+        }
+        else if (movingDown)
+        {
+            movement.y -= moveSpeed;
+        }
+
+        if (movingRight)
+        {
+            movement.x += moveSpeed;
+        }
+        else if (movingLeft)
+        {
+            movement.x -= moveSpeed;
+        }
+
+        rb.velocity = movement;
     }
 }
