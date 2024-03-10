@@ -8291,7 +8291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   enableDiagonalMovement: 1
-  animationThreshold: 0.1
+  animationThreshold: 0.5
 --- !u!212 &1672951738
 SpriteRenderer:
   m_ObjectHideFlags: 0
