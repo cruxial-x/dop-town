@@ -45,22 +45,31 @@ public class FishController : MonoBehaviour
         Vector2 newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
         Vector2 nosePosition = newPosition + offset;
 
-        // Check if the new position is within the move bounds
-        if (moveBounds.Contains(nosePosition))
+        // Check if the new position will be within the move bounds in the next frame
+        if (!moveBounds.Contains(nosePosition))
         {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            // Round the position to the nearest pixel
-            float pixelsPerUnit = 16; // Change this to match your Sprite's Pixels Per Unit setting
-            newPosition = new Vector2(
-                Mathf.Round(newPosition.x * pixelsPerUnit) / pixelsPerUnit,
-                Mathf.Round(newPosition.y * pixelsPerUnit) / pixelsPerUnit
-            );
-
-            rb.MovePosition(newPosition);
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            // If the new position will be out of bounds, reverse the direction in the current frame
+            direction = -direction;
+            newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
+            nosePosition = newPosition + offset;
         }
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        // Round the position to the nearest pixel
+        float pixelsPerUnit = 16; // Change this to match your Sprite's Pixels Per Unit setting
+        newPosition = new Vector2(
+            Mathf.Round(newPosition.x * pixelsPerUnit) / pixelsPerUnit,
+            Mathf.Round(newPosition.y * pixelsPerUnit) / pixelsPerUnit
+        );
+
+        rb.MovePosition(newPosition);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        // Adjust the animation speed based on the fish's movement speed
+        Animator animator = GetComponent<Animator>();
+        animator.speed = speed / 2f;
     }
 
     private IEnumerator ChangeDirection()

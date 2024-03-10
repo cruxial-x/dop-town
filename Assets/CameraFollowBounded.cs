@@ -5,9 +5,9 @@ using UnityEngine.U2D;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;
-    public Vector3 minCameraPos;
-    public Vector3 maxCameraPos;
+    [SerializeField] Transform player;
+    [SerializeField] Vector3 minCameraPos;
+    [SerializeField] Vector3 maxCameraPos;
     private PixelPerfectCamera pixelPerfectCamera;
     private int pixelsPerUnit;
 
@@ -27,5 +27,15 @@ public class CameraFollow : MonoBehaviour
         posY = Mathf.Round(posY * pixelsPerUnit) / pixelsPerUnit;
 
         transform.position = new Vector3(posX, posY, transform.position.z);
+    }
+
+    void OnDrawGizmos()
+    {
+        // Draw a red line box representing the camera bounds
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector3(minCameraPos.x, minCameraPos.y, 0), new Vector3(maxCameraPos.x, minCameraPos.y, 0));
+        Gizmos.DrawLine(new Vector3(maxCameraPos.x, minCameraPos.y, 0), new Vector3(maxCameraPos.x, maxCameraPos.y, 0));
+        Gizmos.DrawLine(new Vector3(maxCameraPos.x, maxCameraPos.y, 0), new Vector3(minCameraPos.x, maxCameraPos.y, 0));
+        Gizmos.DrawLine(new Vector3(minCameraPos.x, maxCameraPos.y, 0), new Vector3(minCameraPos.x, minCameraPos.y, 0));
     }
 }
