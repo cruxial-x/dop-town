@@ -72,17 +72,17 @@ public class PlayerController : MonoBehaviour
 
         isMoving = moveHorizontal != 0 || moveVertical != 0;
 
-        if (moveHorizontal < 0 && moveVertical == 0)
+        if (moveHorizontal < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (moveHorizontal > 0 || moveVertical != 0)
+        else if (moveHorizontal > 0 || (moveHorizontal == 0 && moveVertical != 0))
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        animator.SetBool("movingUp", moveVertical > 0);
-        animator.SetBool("movingDown", moveVertical < 0);
+        animator.SetBool("movingUp", moveVertical > 0 && moveHorizontal == 0);
+        animator.SetBool("movingDown", moveVertical < 0 && moveHorizontal == 0);
         animator.SetBool("isMoving", isMoving);
     }
 
