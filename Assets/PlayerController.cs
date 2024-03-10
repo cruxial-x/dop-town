@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Threshold for changing walking animation")]
     [SerializeField] private float animationThreshold = 0.1f;
 
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
         // Get the PixelPerfectCamera component from the main camera
         PixelPerfectCamera pixelPerfectCamera = Camera.main.GetComponent<PixelPerfectCamera>();
         pixelsPerUnit = pixelPerfectCamera.assetsPPU;
