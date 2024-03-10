@@ -8290,7 +8290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  enableDiagonalMovement: 0
+  enableDiagonalMovement: 1
 --- !u!212 &1672951738
 SpriteRenderer:
   m_ObjectHideFlags: 0
