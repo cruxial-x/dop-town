@@ -39,14 +39,28 @@ public class CardinalMovement : IMovementStrategy
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 2f; // Speed of the player movement
-    private float moveHorizontal, moveVertical; // Variables for movement direction
-    private bool isMoving; // Flag for movement state
-    private Animator animator; // Reference to the Animator component
-    private Rigidbody2D rb; // Reference to the Rigidbody2D component
-    private int pixelsPerUnit; // Pixels per unit of camera's PixelPerfectCamera component
-    public bool enableDiagonalMovement = false; // Flag for enabling diagonal movement
-    private IMovementStrategy movementStrategy; // Reference to the movement strategy
+    [Header("Player Movement")]
+    [Tooltip("Speed of the player movement")]
+    [SerializeField] float moveSpeed = 2f;
+
+    private float moveHorizontal, moveVertical;
+
+    [Tooltip("Flag for movement state")]
+    private bool isMoving;
+
+    private Animator animator;
+    private Rigidbody2D rb;
+
+    [Tooltip("Pixels per unit of camera's PixelPerfectCamera component")]
+    private int pixelsPerUnit;
+
+    [Tooltip("Flag for enabling diagonal movement")]
+    [SerializeField] bool enableDiagonalMovement = false;
+
+    private IMovementStrategy movementStrategy;
+
+    [Tooltip("Threshold for changing walking animation")]
+    [SerializeField] private float animationThreshold = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -70,19 +84,23 @@ public class PlayerController : MonoBehaviour
     {
         movementStrategy.HandleMovement(ref moveHorizontal, ref moveVertical);
 
-        isMoving = moveHorizontal != 0 || moveVertical != 0;
+        // If the absolute value of the horizontal or vertical movement is less than the animation threshold, consider it as zero
+        float effectiveMoveHorizontal = Mathf.Abs(moveHorizontal) < animationThreshold ? 0 : moveHorizontal;
+        float effectiveMoveVertical = Mathf.Abs(moveVertical) < animationThreshold ? 0 : moveVertical;
 
-        if (moveHorizontal < 0)
+        isMoving = effectiveMoveHorizontal != 0 || effectiveMoveVertical != 0;
+
+        if (effectiveMoveHorizontal < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (moveHorizontal > 0 || (moveHorizontal == 0 && moveVertical != 0))
+        else if (effectiveMoveHorizontal > 0 || (effectiveMoveHorizontal == 0 && effectiveMoveVertical != 0))
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        animator.SetBool("movingUp", moveVertical > 0 && moveHorizontal == 0);
-        animator.SetBool("movingDown", moveVertical < 0 && moveHorizontal == 0);
+        animator.SetBool("movingUp", effectiveMoveVertical > 0 && effectiveMoveHorizontal == 0);
+        animator.SetBool("movingDown", effectiveMoveVertical < 0 && effectiveMoveHorizontal == 0);
         animator.SetBool("isMoving", isMoving);
     }
 

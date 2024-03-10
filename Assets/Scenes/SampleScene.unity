@@ -8244,8 +8244,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1672951739}
-  - component: {fileID: 1672951738}
   - component: {fileID: 1672951737}
+  - component: {fileID: 1672951738}
   - component: {fileID: 1672951736}
   - component: {fileID: 1672951740}
   - component: {fileID: 1672951741}
@@ -8291,6 +8291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   enableDiagonalMovement: 1
+  animationThreshold: 0.1
 --- !u!212 &1672951738
 SpriteRenderer:
   m_ObjectHideFlags: 0
