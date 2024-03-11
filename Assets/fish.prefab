@@ -141,13 +141,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0ab95f51495004f9a55352dd7a2e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 1
-  maxSpeed: 5
+  minSpeed: 0
+  maxSpeed: 0.5
+  rotationSpeed: 0.5
   moveBounds:
-    m_Center: {x: -1, y: 0.5, z: 0}
-    m_Extent: {x: 8, y: 3.5, z: 0}
-  edgeThreshold: 0.1
-  turnSpeed: 0.5
+    serializedVersion: 2
+    x: -9
+    y: -3
+    width: 16
+    height: 7
 --- !u!50 &3844746901828203016
 Rigidbody2D:
   serializedVersion: 4

@@ -1,116 +1,59 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class FishController : MonoBehaviour
 {
     public float minSpeed = 1f;
     public float maxSpeed = 5f;
-    public Bounds moveBounds;
-    private float speed;
-    private Vector2 direction;
-    private Color originalColor;
-    private GameObject fishNose;
-    public float edgeThreshold = 0.5f;
-    public float turnSpeed = 2f;
-    // private float collisionCooldown = 0f; 
+    public float rotationSpeed = 2f;
+    public Rect moveBounds;
+
+    private float currentSpeed;
+    private Vector2 targetPosition;
+    private float targetRotation;
 
     private void Start()
     {
-        if (transform.childCount > 0)
-        {
-            fishNose = transform.GetChild(0).gameObject; // Get the first child of the fish GameObject
-        }
-        else
-        {
-            Debug.LogError("Fish GameObject has no children");
-        }
-
-        StartCoroutine(ChangeDirection());
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color color = spriteRenderer.color;
-        originalColor = color;
         color.a = 0.5f;
         spriteRenderer.color = color;
-        // Ignore collisions with the "Default" layer (player)
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 0, true);
-    }
-    private void OnDrawGizmos()
-    {
-        // Draw a red box for the moveBounds
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(moveBounds.center, moveBounds.size);
-    }
-    private void Update()
-    {
-        AdjustDirectionAwayFromBounds();
-        Vector2 offset = fishNose.transform.localPosition; // Offset based on fishNose's local position
-        Vector2 newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
-        Vector2 nosePosition = newPosition + offset;
 
-        // Check if the new position will be within the move bounds in the next frame
-        if (!moveBounds.Contains(nosePosition))
-        {
-            // If the new position will be out of bounds, reverse the direction in the current frame
-            direction = -direction;
-            newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
-        }
-
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        // Round the position to the nearest pixel
-        newPosition = PixelSnapper.SnapToPixelGrid(newPosition);
-        rb.MovePosition(newPosition);
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        // Adjust the animation speed based on the fish's movement speed
-        Animator animator = GetComponent<Animator>();
-        animator.speed = speed / 2f;
-    }
-    private void AdjustDirectionAwayFromBounds()
-    {
-        Vector2 centerDirection = (moveBounds.center - transform.position).normalized;
-        float distanceToEdge = Vector2.Distance(transform.position, moveBounds.ClosestPoint(transform.position));
-        if (distanceToEdge < edgeThreshold)
-        {
-            direction = Vector2.Lerp(direction, centerDirection, Time.deltaTime * turnSpeed);
-        }
+        StartCoroutine(ChangeTargetPositionCoroutine());
     }
 
-    private IEnumerator ChangeDirection()
+    private IEnumerator ChangeTargetPositionCoroutine()
     {
         while (true)
         {
-            Vector2 newDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            float newSpeed = Random.Range(minSpeed, maxSpeed);
+            yield return new WaitForSeconds(Random.Range(1, 5));
 
-            float changeDuration = Random.Range(1f, 5f);
-            float startTime = Time.time;
+            currentSpeed = Random.Range(minSpeed, maxSpeed);
+            targetPosition = new Vector2(
+                Random.Range(moveBounds.min.x, moveBounds.max.x),
+                Random.Range(moveBounds.min.y, moveBounds.max.y)
+            );
 
-            Vector2 oldDirection = direction;
-            float oldSpeed = speed;
-
-            while (Time.time < startTime + changeDuration)
-            {
-                float t = (Time.time - startTime) / changeDuration;
-                direction = Vector2.Lerp(oldDirection, newDirection, t);
-                speed = Mathf.Lerp(oldSpeed, newSpeed, t);
-
-                yield return null;
-            }
-
-            direction = newDirection;
-            speed = newSpeed;
-
-            yield return new WaitForSeconds(Random.Range(1f, 5f));
+            Vector2 direction = targetPosition - (Vector2)transform.position;
+            targetRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
     }
-    public void CatchFish()
+
+    private void Update()
     {
-        StopAllCoroutines();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = originalColor;
-        Destroy(gameObject);
+        if (Vector2.Distance(transform.position, targetPosition) > 0.01f)  // If the fish is not already at the target position
+        {
+            // Rotate the fish to face the target position
+            transform.rotation = Quaternion.Euler(0, 0, Mathf.MoveTowardsAngle(transform.rotation.eulerAngles.z, targetRotation, Time.deltaTime * rotationSpeed * 360));  // Multiply by 360 to convert speed from rotations/second to degrees/second
+
+            // Move the fish towards the target position
+            transform.position = Vector2.Lerp(transform.position, targetPosition, Time.deltaTime * currentSpeed);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(moveBounds.center, moveBounds.size);
     }
 }

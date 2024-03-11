@@ -6,7 +6,7 @@ public class FishSpawner : MonoBehaviour
 {
     public GameObject fishPrefab;
     public int numberOfFish = 10;
-    private Bounds spawnBounds;
+    private Rect spawnBounds;
     // Start is called before the first frame update
     void Start()
     {
