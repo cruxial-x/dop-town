@@ -11,6 +11,7 @@ public class FishController : MonoBehaviour
     private float currentSpeed;
     private Vector2 targetPosition;
     private float targetRotation;
+    private Animator animator;  // Reference to the Animator component
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class FishController : MonoBehaviour
         color.a = 0.5f;
         spriteRenderer.color = color;
 
+        animator = GetComponent<Animator>();  // Get the Animator component
+
         StartCoroutine(ChangeTargetPositionCoroutine());
     }
 
@@ -26,7 +29,7 @@ public class FishController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1, 5));
+            yield return new WaitForSeconds(Random.Range(1.0f, 5.0f));
 
             currentSpeed = Random.Range(minSpeed, maxSpeed);
             targetPosition = new Vector2(
@@ -36,9 +39,14 @@ public class FishController : MonoBehaviour
 
             Vector2 direction = targetPosition - (Vector2)transform.position;
             targetRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            // Normalize the current speed to a value between 0 and 1
+            float normalizedSpeed = (currentSpeed - minSpeed) / (maxSpeed - minSpeed);
+
+            // Scale the normalized speed to a value between 1 and 2
+            animator.speed = 1 + normalizedSpeed;
         }
     }
-
     private void Update()
     {
         if (Vector2.Distance(transform.position, targetPosition) > 0.01f)  // If the fish is not already at the target position
