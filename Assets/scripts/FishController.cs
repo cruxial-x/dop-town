@@ -11,6 +11,8 @@ public class FishController : MonoBehaviour
     private Vector2 direction;
     private Color originalColor;
     private GameObject fishNose;
+    public float edgeThreshold = 0.5f;
+    public float turnSpeed = 2f;
     // private float collisionCooldown = 0f; 
 
     private void Start()
@@ -41,6 +43,7 @@ public class FishController : MonoBehaviour
     }
     private void Update()
     {
+        AdjustDirectionAwayFromBounds();
         Vector2 offset = fishNose.transform.localPosition; // Offset based on fishNose's local position
         Vector2 newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
         Vector2 nosePosition = newPosition + offset;
@@ -64,6 +67,15 @@ public class FishController : MonoBehaviour
         // Adjust the animation speed based on the fish's movement speed
         Animator animator = GetComponent<Animator>();
         animator.speed = speed / 2f;
+    }
+    private void AdjustDirectionAwayFromBounds()
+    {
+        Vector2 centerDirection = (moveBounds.center - transform.position).normalized;
+        float distanceToEdge = Vector2.Distance(transform.position, moveBounds.ClosestPoint(transform.position));
+        if (distanceToEdge < edgeThreshold)
+        {
+            direction = Vector2.Lerp(direction, centerDirection, Time.deltaTime * turnSpeed);
+        }
     }
 
     private IEnumerator ChangeDirection()
