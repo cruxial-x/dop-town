@@ -146,8 +146,8 @@ MonoBehaviour:
   moveBounds:
     m_Center: {x: -1, y: 0.5, z: 0}
     m_Extent: {x: 8, y: 3.5, z: 0}
-  edgeThreshold: 1
-  turnSpeed: 1
+  edgeThreshold: 0.1
+  turnSpeed: 0.5
 --- !u!50 &3844746901828203016
 Rigidbody2D:
   serializedVersion: 4
