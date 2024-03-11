@@ -8,13 +8,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Vector3 minCameraPos;
     [SerializeField] Vector3 maxCameraPos;
-    private PixelPerfectCamera pixelPerfectCamera;
-    private int pixelsPerUnit;
 
     void Start()
     {
-        pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
-        pixelsPerUnit = pixelPerfectCamera.assetsPPU;
+
     }
 
     void LateUpdate()
@@ -22,9 +19,9 @@ public class CameraFollow : MonoBehaviour
         float posX = Mathf.Clamp(player.position.x, minCameraPos.x, maxCameraPos.x);
         float posY = Mathf.Clamp(player.position.y, minCameraPos.y, maxCameraPos.y);
 
-        // Round the position to the nearest pixel
-        posX = Mathf.Round(posX * pixelsPerUnit) / pixelsPerUnit;
-        posY = Mathf.Round(posY * pixelsPerUnit) / pixelsPerUnit;
+        // Convert the position to PPU so you don't get decimal place positions
+        Vector3 pos = new Vector3(posX, posY, transform.position.z);
+        pos = PixelSnapper.SnapToPixelGrid(pos);
 
         transform.position = new Vector3(posX, posY, transform.position.z);
     }

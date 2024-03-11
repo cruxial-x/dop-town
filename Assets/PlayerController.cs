@@ -51,9 +51,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
 
-    [Tooltip("Pixels per unit of camera's PixelPerfectCamera component")]
-    private int pixelsPerUnit;
-
     [Tooltip("Flag for enabling diagonal movement")]
     [SerializeField] bool enableDiagonalMovement = false;
 
@@ -68,9 +65,6 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        // Get the PixelPerfectCamera component from the main camera
-        PixelPerfectCamera pixelPerfectCamera = Camera.main.GetComponent<PixelPerfectCamera>();
-        pixelsPerUnit = pixelPerfectCamera.assetsPPU;
 
         // Ignore collisions with fish
         int playerLayer = LayerMask.NameToLayer("Default");
@@ -111,8 +105,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movement;
 
         Vector2 pos = rb.position;
-        pos.x = Mathf.Round(pos.x * pixelsPerUnit) / pixelsPerUnit;
-        pos.y = Mathf.Round(pos.y * pixelsPerUnit) / pixelsPerUnit;
+        pos = PixelSnapper.SnapToPixelGrid(pos);
         rb.position = pos;
     }
 }

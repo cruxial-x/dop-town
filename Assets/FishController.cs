@@ -51,17 +51,11 @@ public class FishController : MonoBehaviour
             // If the new position will be out of bounds, reverse the direction in the current frame
             direction = -direction;
             newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
-            nosePosition = newPosition + offset;
         }
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // Round the position to the nearest pixel
-        float pixelsPerUnit = 16; // Change this to match your Sprite's Pixels Per Unit setting
-        newPosition = new Vector2(
-            Mathf.Round(newPosition.x * pixelsPerUnit) / pixelsPerUnit,
-            Mathf.Round(newPosition.y * pixelsPerUnit) / pixelsPerUnit
-        );
-
+        newPosition = PixelSnapper.SnapToPixelGrid(newPosition);
         rb.MovePosition(newPosition);
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
