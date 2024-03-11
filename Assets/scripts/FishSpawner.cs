@@ -21,8 +21,8 @@ public class FishSpawner : MonoBehaviour
     void SpawnFish()
     {
         Vector2 randomPos = new Vector2(
-            Random.Range(spawnBounds.min.x, spawnBounds.max.x),
-            Random.Range(spawnBounds.min.y, spawnBounds.max.y)
+            Random.Range(spawnBounds.min.x + 1, spawnBounds.max.x - 1),
+            Random.Range(spawnBounds.min.y + 1, spawnBounds.max.y - 1)
         );
 
         Instantiate(fishPrefab, randomPos, Quaternion.identity);
