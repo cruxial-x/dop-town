@@ -58,7 +58,10 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Threshold for changing walking animation")]
     [SerializeField] private float animationThreshold = 0.1f;
-
+    public FishingRod fishingRod;
+    private Vector3 targetPosition;
+    private Vector3 lastCastDirection = Vector3.up; // Default to up
+    public float castDistance = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +79,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement
         movementStrategy.HandleMovement(ref moveHorizontal, ref moveVertical);
+
+        // Update the last cast direction if the player is moving
+        Vector3 currentDirection = new Vector3(moveHorizontal, moveVertical, 0).normalized;
+        if (currentDirection.magnitude != 0)
+        {
+            lastCastDirection = currentDirection;
+        }
+
+        //Fishing
+        // Check if the player has pressed the cast button (e.g., the space bar)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Set the target position to some position in the direction of the player's movement
+            targetPosition = transform.position + lastCastDirection * castDistance;
+            // Cast the line to the target position
+            StartCoroutine(fishingRod.CastLine(targetPosition));
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(fishingRod.ReelIn());
+        }
 
         // If the absolute value of the horizontal or vertical movement is less than the animation threshold, consider it as zero
         float effectiveMoveHorizontal = Mathf.Abs(moveHorizontal) < animationThreshold ? 0 : moveHorizontal;

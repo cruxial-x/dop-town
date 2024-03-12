@@ -58,6 +58,15 @@ public class FishController : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, targetPosition, Time.deltaTime * currentSpeed);
         }
     }
+    // Swim towards bait if it's close enough
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log("TriggerStay");
+        if (other.CompareTag("Bait"))
+        {
+            targetPosition = other.transform.position;
+        }
+    }
 
     private void OnDrawGizmos()
     {
