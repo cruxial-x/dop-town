@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +6,21 @@ using UnityEngine.UI;
 
 public class SignController : MonoBehaviour
 {
-    public GameObject signTextObject;
+    private GameObject signTextObject;
     public string textToShow = "Press E to fish";
-    public GameObject player;
     private PlayerController playerController;
+    private bool playerNearSign = false;
     // Start is called before the first frame update
     void Start()
     {
-        playerController = player.GetComponent<PlayerController>();
+        playerController = GameObject.Find("Guyo").GetComponent<PlayerController>();
+        signTextObject = GameObject.Find("Text");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerController.isNearSign)
+        if (playerNearSign)
         {
             if (Input.GetKeyDown(KeyCode.E) && !signTextObject.activeSelf)
             {
@@ -33,18 +35,18 @@ public class SignController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == playerController.gameObject)
         {
-            playerController.isNearSign = true;
+            playerNearSign = true;
             signTextObject.GetComponent<Text>().text = textToShow;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == playerController.gameObject)
         {
-            playerController.isNearSign = false;
+            playerNearSign = false;
             signTextObject.SetActive(false);
         }
     }

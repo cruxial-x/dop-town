@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 lastCastDirection = Vector3.up; // Default to up
     public float castDistance = 3f;
-    public bool isNearSign = false;
 
     // Start is called before the first frame update
     void Start()
