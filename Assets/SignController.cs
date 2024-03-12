@@ -23,7 +23,6 @@ public class SignController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && !signTextObject.activeSelf)
             {
                 signTextObject.SetActive(true);
-                signTextObject.GetComponent<Text>().text = textToShow;
             }
             else if (Input.GetKeyDown(KeyCode.E) && signTextObject.activeSelf)
             {
@@ -37,7 +36,6 @@ public class SignController : MonoBehaviour
         if (other.gameObject == player)
         {
             playerController.isNearSign = true;
-            signTextObject.SetActive(true);
             signTextObject.GetComponent<Text>().text = textToShow;
         }
     }
