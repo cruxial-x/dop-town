@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.U2D;
 
 public interface IMovementStrategy
@@ -62,6 +63,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 lastCastDirection = Vector3.up; // Default to up
     public float castDistance = 3f;
+    public GameObject actionUI;
+    public Sprite keydownImage;
+    private Sprite originalImage;
+    private bool canPerformAction = false;
 
     // Start is called before the first frame update
     void Start()
@@ -121,6 +126,29 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("movingUp", effectiveMoveVertical > 0 && effectiveMoveHorizontal == 0);
         animator.SetBool("movingDown", effectiveMoveVertical < 0 && effectiveMoveHorizontal == 0);
         animator.SetBool("isMoving", isMoving);
+
+        if (canPerformAction)
+        {
+            if (actionUI.TryGetComponent<UnityEngine.UI.Image>(out var actionUIImage))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    // Set originalImage here, only when the E key is first pressed down
+                    if (originalImage == null)
+                    {
+                        originalImage = actionUIImage.sprite;
+                    }
+
+                    actionUIImage.sprite = keydownImage;
+                }
+                else if (Input.GetKeyUp(KeyCode.E))
+                {
+                    // Change the image back to the original when the E key is released
+                    actionUIImage.sprite = originalImage;
+                    originalImage = null; // Reset originalImage for the next key press
+                }
+            }
+        }
     }
 
     // FixedUpdate is called once per physics frame
@@ -132,5 +160,21 @@ public class PlayerController : MonoBehaviour
         Vector2 pos = rb.position;
         pos = PixelSnapper.SnapToPixelGrid(pos);
         rb.position = pos;
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Action"))
+        {
+            actionUI.SetActive(true);
+            canPerformAction = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Action"))
+        {
+            actionUI.SetActive(false);
+            canPerformAction = false;
+        }
     }
 }

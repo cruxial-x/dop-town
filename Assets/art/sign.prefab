@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1165190086048122569}
   m_Layer: 0
   m_Name: sign
-  m_TagString: Untagged
+  m_TagString: Action
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4615395e4a93ed74e96b58fe148d893b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signTextObject: {fileID: 0}
   textToShow: no fishin
-  player: {fileID: 0}

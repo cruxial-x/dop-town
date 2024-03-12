@@ -14,7 +14,7 @@ public class SignController : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Guyo").GetComponent<PlayerController>();
-        signTextObject = GameObject.Find("Text");
+        signTextObject = GameObject.Find("Canvas/Text");
     }
 
     // Update is called once per frame
@@ -38,6 +38,7 @@ public class SignController : MonoBehaviour
         if (other.gameObject == playerController.gameObject)
         {
             playerNearSign = true;
+            signTextObject.SetActive(false);
             signTextObject.GetComponent<Text>().text = textToShow;
         }
     }
