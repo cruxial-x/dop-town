@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: fish_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.375}
+    pivot: {x: 0.5, y: -0.6666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 8
+      width: 14
+      height: 6
     spriteID: a044ff3dd8d808f40b9e565b5eec75bc
     spriteBone: []
     spriteOutline: []
@@ -143,15 +143,15 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: fish_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.5714286}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 20
-      width: 16
-      height: 7
+      y: 18
+      width: 14
+      height: 5
     spriteID: 7fb2492af2fe87342bdbaaa93d3487e3
     spriteBone: []
     spriteOutline: []
@@ -160,18 +160,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 20}
+    uvTransform: {x: 4, y: 18}
   - name: fish_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.5714286}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
-      y: 20
-      width: 16
-      height: 7
+      x: 26
+      y: 18
+      width: 14
+      height: 5
     spriteID: 18e08d478c016c2468ce96798ecc4353
     spriteBone: []
     spriteOutline: []
@@ -180,18 +180,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 20}
+    uvTransform: {x: 26, y: 18}
   - name: fish_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: -0.5}
+    pivot: {x: 0.5, y: -0.8333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
+      x: 26
       y: 4
-      width: 16
-      height: 8
+      width: 14
+      height: 6
     spriteID: db8672b1257ad2640b6df389dddddb52
     spriteBone: []
     spriteOutline: []
@@ -200,18 +200,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 4}
+    uvTransform: {x: 26, y: 4}
   - name: fish_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: -0.5714286}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 35
-      width: 16
-      height: 7
+      y: 31
+      width: 14
+      height: 5
     spriteID: 41242ae336b02704cb60bfaa37bb5943
     spriteBone: []
     spriteOutline: []
@@ -220,18 +220,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 35}
+    uvTransform: {x: 4, y: 31}
   - name: fish_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: -0.5714286}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
-      y: 35
-      width: 16
-      height: 7
+      x: 26
+      y: 31
+      width: 14
+      height: 5
     spriteID: 75bc195a0e44a1c468def370aed10268
     spriteBone: []
     spriteOutline: []
@@ -240,7 +240,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 35}
+    uvTransform: {x: 26, y: 31}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -253,50 +253,50 @@ ScriptedImporter:
     - name: fish_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 3
-        width: 16
-        height: 8
+        x: 1
+        y: 4
+        width: 14
+        height: 6
       spriteId: a044ff3dd8d808f40b9e565b5eec75bc
     - name: fish_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
-        y: 4
-        width: 16
-        height: 7
+        x: 1
+        y: 5
+        width: 14
+        height: 5
       spriteId: 7fb2492af2fe87342bdbaaa93d3487e3
     - name: fish_Frame_2
       frameIndex: 2
       cellRect:
-        x: 0
-        y: 4
-        width: 16
-        height: 7
+        x: 1
+        y: 5
+        width: 14
+        height: 5
       spriteId: 18e08d478c016c2468ce96798ecc4353
     - name: fish_Frame_3
       frameIndex: 3
       cellRect:
-        x: 0
-        y: 4
-        width: 16
-        height: 8
+        x: 1
+        y: 5
+        width: 14
+        height: 6
       spriteId: db8672b1257ad2640b6df389dddddb52
     - name: fish_Frame_4
       frameIndex: 4
       cellRect:
-        x: 0
-        y: 4
-        width: 16
-        height: 7
+        x: 1
+        y: 5
+        width: 14
+        height: 5
       spriteId: 41242ae336b02704cb60bfaa37bb5943
     - name: fish_Frame_5
       frameIndex: 5
       cellRect:
-        x: 0
-        y: 4
-        width: 16
-        height: 7
+        x: 1
+        y: 5
+        width: 14
+        height: 5
       spriteId: 75bc195a0e44a1c468def370aed10268
     linkedCells: []
     parentIndex: -1
