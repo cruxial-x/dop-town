@@ -28,11 +28,19 @@ public class CameraFollow : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        // Get the camera's size
+        float height = Camera.main.orthographicSize * 2;
+        float width = height * Camera.main.aspect;
+
+        // Calculate the bounds for the edges of the camera
+        Vector3 minEdgePos = minCameraPos - new Vector3(width / 2, height / 2, 0);
+        Vector3 maxEdgePos = maxCameraPos + new Vector3(width / 2, height / 2, 0);
+
         // Draw a red line box representing the camera bounds
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector3(minCameraPos.x, minCameraPos.y, 0), new Vector3(maxCameraPos.x, minCameraPos.y, 0));
-        Gizmos.DrawLine(new Vector3(maxCameraPos.x, minCameraPos.y, 0), new Vector3(maxCameraPos.x, maxCameraPos.y, 0));
-        Gizmos.DrawLine(new Vector3(maxCameraPos.x, maxCameraPos.y, 0), new Vector3(minCameraPos.x, maxCameraPos.y, 0));
-        Gizmos.DrawLine(new Vector3(minCameraPos.x, maxCameraPos.y, 0), new Vector3(minCameraPos.x, minCameraPos.y, 0));
+        Gizmos.DrawLine(new Vector3(minEdgePos.x, minEdgePos.y, 0), new Vector3(maxEdgePos.x, minEdgePos.y, 0));
+        Gizmos.DrawLine(new Vector3(maxEdgePos.x, minEdgePos.y, 0), new Vector3(maxEdgePos.x, maxEdgePos.y, 0));
+        Gizmos.DrawLine(new Vector3(maxEdgePos.x, maxEdgePos.y, 0), new Vector3(minEdgePos.x, maxEdgePos.y, 0));
+        Gizmos.DrawLine(new Vector3(minEdgePos.x, maxEdgePos.y, 0), new Vector3(minEdgePos.x, minEdgePos.y, 0));
     }
 }

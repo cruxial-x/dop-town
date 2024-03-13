@@ -123,14 +123,14 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: guyo_Frame_0
     originalName: 
-    pivot: {x: 0.4666667, y: 0}
+    pivot: {x: 0.65217394, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
+      width: 23
       height: 32
     spriteID: bcc5979f29a591e40b85bfdddb1092fd
     spriteBone: []
@@ -143,15 +143,15 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: guyo_Frame_1
     originalName: 
-    pivot: {x: 0.4666667, y: 0}
+    pivot: {x: 0.61904764, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 27
+      x: 4
       y: 44
-      width: 15
-      height: 31
+      width: 21
+      height: 32
     spriteID: 4612b55100ca96f4eb4a23d2a8497b35
     spriteBone: []
     spriteOutline: []
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 44}
+    uvTransform: {x: 4, y: 44}
   - name: guyo_Frame_2
     originalName: 
     pivot: {x: 0.4666667, y: 0}
@@ -169,7 +169,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 44
+      y: 84
       width: 15
       height: 32
     spriteID: eb5feaa2a5575d34db03e5af2a0c173c
@@ -180,7 +180,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 44}
+    uvTransform: {x: 4, y: 84}
   - name: guyo_Frame_3
     originalName: 
     pivot: {x: 0.4666667, y: 0}
@@ -188,10 +188,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 27
-      y: 83
+      x: 4
+      y: 124
       width: 15
-      height: 31
+      height: 32
     spriteID: 8eb9743f913c0514c88b41158b869059
     spriteBone: []
     spriteOutline: []
@@ -200,17 +200,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 83}
+    uvTransform: {x: 4, y: 124}
   - name: guyo_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.4666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 73
-      y: 4
-      width: 14
+      x: 4
+      y: 164
+      width: 15
       height: 32
     spriteID: 8ca00431129fc4146bc091e7e75c9cb5
     spriteBone: []
@@ -220,17 +220,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 73, y: 4}
+    uvTransform: {x: 4, y: 164}
   - name: guyo_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.4666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 73
-      y: 84
-      width: 14
+      x: 35
+      y: 204
+      width: 15
       height: 31
     spriteID: fc4e61ab69a8e114080f9b66268a687a
     spriteBone: []
@@ -240,17 +240,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 73, y: 84}
+    uvTransform: {x: 35, y: 204}
   - name: guyo_Frame_6
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.4666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 73
-      y: 44
-      width: 14
+      x: 4
+      y: 204
+      width: 15
       height: 32
     spriteID: a8d738426196ebf4bb62edb8472aaf4e
     spriteBone: []
@@ -260,15 +260,15 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 73, y: 44}
+    uvTransform: {x: 4, y: 204}
   - name: guyo_Frame_7
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.4666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
+      x: 58
       y: 4
       width: 15
       height: 31
@@ -280,17 +280,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 4}
+    uvTransform: {x: 58, y: 4}
   - name: guyo_Frame_8
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 84
-      width: 15
+      x: 58
+      y: 160
+      width: 14
       height: 32
     spriteID: 2c66ebd87d27f2e44a4f07b7afcef540
     spriteBone: []
@@ -300,18 +300,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 84}
+    uvTransform: {x: 58, y: 160}
   - name: guyo_Frame_9
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
-      y: 43
-      width: 15
-      height: 31
+      x: 58
+      y: 200
+      width: 14
+      height: 32
     spriteID: 495288dcb796571448df1e1f3b959e96
     spriteBone: []
     spriteOutline: []
@@ -320,17 +320,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 43}
+    uvTransform: {x: 58, y: 200}
   - name: guyo_Frame_10
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 27
+      x: 81
       y: 4
-      width: 15
+      width: 14
       height: 32
     spriteID: fdc59149fdb4f644f8cc5716449c1fd8
     spriteBone: []
@@ -340,18 +340,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 4}
+    uvTransform: {x: 81, y: 4}
   - name: guyo_Frame_11
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
-      y: 82
-      width: 15
-      height: 31
+      x: 81
+      y: 44
+      width: 14
+      height: 32
     spriteID: 130177b7dc7ecf6498b913ac96a25a4f
     spriteBone: []
     spriteOutline: []
@@ -360,7 +360,207 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 82}
+    uvTransform: {x: 81, y: 44}
+  - name: guyo_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 124
+      width: 14
+      height: 31
+    spriteID: 501a9f93612420246972a23adb986a03
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 124}
+  - name: guyo_Frame_13
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 84
+      width: 14
+      height: 32
+    spriteID: 0443e8c00220a654483ff45a9bbff9c9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 84}
+  - name: guyo_Frame_14
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 58
+      y: 43
+      width: 15
+      height: 31
+    spriteID: 56af41deed2d76b4f86749997979a5a1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 58, y: 43}
+  - name: guyo_Frame_15
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 4
+      width: 15
+      height: 32
+    spriteID: 970233b2841768d43960bc4e9415be66
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 4}
+  - name: guyo_Frame_16
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 44
+      width: 15
+      height: 32
+    spriteID: f3a55f59c0532034e9c41aeb9bf9c644
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 44}
+  - name: guyo_Frame_17
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 84
+      width: 15
+      height: 32
+    spriteID: 216a160faca95504b89c653a2b05cab1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 84}
+  - name: guyo_Frame_18
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 124
+      width: 15
+      height: 32
+    spriteID: 985b7a037f683594a931ad72c43be0ca
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 124}
+  - name: guyo_Frame_19
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 58
+      y: 82
+      width: 15
+      height: 31
+    spriteID: 306f2fb87b7d3824c8cd757c65db6eb0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 58, y: 82}
+  - name: guyo_Frame_20
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 164
+      width: 15
+      height: 32
+    spriteID: 76fa77b0964bf964093ac8c4fa6d1e76
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 164}
+  - name: guyo_Frame_21
+    originalName: 
+    pivot: {x: 0.53333336, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 58
+      y: 121
+      width: 15
+      height: 31
+    spriteID: 1595f8ce64009ee43b2769a2879b0100
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 58, y: 121}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -373,18 +573,18 @@ ScriptedImporter:
     - name: guyo_Frame_0
       frameIndex: 0
       cellRect:
-        x: 9
+        x: 1
         y: 0
-        width: 15
+        width: 23
         height: 32
       spriteId: bcc5979f29a591e40b85bfdddb1092fd
     - name: guyo_Frame_1
       frameIndex: 1
       cellRect:
-        x: 9
+        x: 3
         y: 0
-        width: 15
-        height: 31
+        width: 21
+        height: 32
       spriteId: 4612b55100ca96f4eb4a23d2a8497b35
     - name: guyo_Frame_2
       frameIndex: 2
@@ -400,14 +600,14 @@ ScriptedImporter:
         x: 9
         y: 0
         width: 15
-        height: 31
+        height: 32
       spriteId: 8eb9743f913c0514c88b41158b869059
     - name: guyo_Frame_4
       frameIndex: 4
       cellRect:
         x: 9
         y: 0
-        width: 14
+        width: 15
         height: 32
       spriteId: 8ca00431129fc4146bc091e7e75c9cb5
     - name: guyo_Frame_5
@@ -415,7 +615,7 @@ ScriptedImporter:
       cellRect:
         x: 9
         y: 0
-        width: 14
+        width: 15
         height: 31
       spriteId: fc4e61ab69a8e114080f9b66268a687a
     - name: guyo_Frame_6
@@ -423,13 +623,13 @@ ScriptedImporter:
       cellRect:
         x: 9
         y: 0
-        width: 14
+        width: 15
         height: 32
       spriteId: a8d738426196ebf4bb62edb8472aaf4e
     - name: guyo_Frame_7
       frameIndex: 7
       cellRect:
-        x: 8
+        x: 9
         y: 0
         width: 15
         height: 31
@@ -437,35 +637,115 @@ ScriptedImporter:
     - name: guyo_Frame_8
       frameIndex: 8
       cellRect:
-        x: 8
+        x: 9
         y: 0
-        width: 15
+        width: 14
         height: 32
       spriteId: 2c66ebd87d27f2e44a4f07b7afcef540
     - name: guyo_Frame_9
       frameIndex: 9
       cellRect:
-        x: 8
+        x: 9
         y: 0
-        width: 15
-        height: 31
+        width: 14
+        height: 32
       spriteId: 495288dcb796571448df1e1f3b959e96
     - name: guyo_Frame_10
       frameIndex: 10
       cellRect:
-        x: 8
+        x: 9
         y: 0
-        width: 15
+        width: 14
         height: 32
       spriteId: fdc59149fdb4f644f8cc5716449c1fd8
     - name: guyo_Frame_11
       frameIndex: 11
       cellRect:
+        x: 9
+        y: 0
+        width: 14
+        height: 32
+      spriteId: 130177b7dc7ecf6498b913ac96a25a4f
+    - name: guyo_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 9
+        y: 0
+        width: 14
+        height: 31
+      spriteId: 501a9f93612420246972a23adb986a03
+    - name: guyo_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 9
+        y: 0
+        width: 14
+        height: 32
+      spriteId: 0443e8c00220a654483ff45a9bbff9c9
+    - name: guyo_Frame_14
+      frameIndex: 14
+      cellRect:
         x: 8
         y: 0
         width: 15
         height: 31
-      spriteId: 130177b7dc7ecf6498b913ac96a25a4f
+      spriteId: 56af41deed2d76b4f86749997979a5a1
+    - name: guyo_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 32
+      spriteId: 970233b2841768d43960bc4e9415be66
+    - name: guyo_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 32
+      spriteId: f3a55f59c0532034e9c41aeb9bf9c644
+    - name: guyo_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 32
+      spriteId: 216a160faca95504b89c653a2b05cab1
+    - name: guyo_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 32
+      spriteId: 985b7a037f683594a931ad72c43be0ca
+    - name: guyo_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 31
+      spriteId: 306f2fb87b7d3824c8cd757c65db6eb0
+    - name: guyo_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 32
+      spriteId: 76fa77b0964bf964093ac8c4fa6d1e76
+    - name: guyo_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 8
+        y: 0
+        width: 15
+        height: 31
+      spriteId: 1595f8ce64009ee43b2769a2879b0100
     linkedCells: []
     parentIndex: -1
   platformSettings: []
