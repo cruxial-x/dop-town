@@ -81,14 +81,28 @@ void Start()
     int fishLayer = LayerMask.NameToLayer("Water");
     Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
     movementStrategy = enableDiagonalMovement ? new DiagonalMovement() : new CardinalMovement();
-
-    // Get a reference to the CameraController script
-    CameraFollow cameraController = Camera.main.GetComponent<CameraFollow>();
-
-    // Initialize the camera boundaries
-    minEdgePos = cameraController.minEdgePos;
-    maxEdgePos = cameraController.maxEdgePos;
+    // InitializeCameraBoundaries();
 }
+
+    // void InitializeCameraBoundaries()
+    // {
+    //     // Get a reference to the CameraController script
+    //     CameraFollow cameraController = Camera.main.GetComponent<CameraFollow>();
+
+    //     // Initialize the camera boundaries
+    //     minEdgePos = cameraController.minEdgePos;
+    //     maxEdgePos = cameraController.maxEdgePos;
+
+    //     // Get the player's sprite size
+    //     var spriteRenderer = GetComponent<SpriteRenderer>();
+
+    //     // Convert the player's sprite size from pixels to units
+    //     Vector2 playerHalfSizeInUnits = spriteRenderer.sprite.bounds.size / 2;
+
+    //     // Adjust the boundaries by the player's half size
+    //     minEdgePos += new Vector2(playerHalfSizeInUnits.x, playerHalfSizeInUnits.y);
+    //     maxEdgePos -= new Vector2(playerHalfSizeInUnits.x, playerHalfSizeInUnits.y);
+    // }
 
     // Update is called once per frame
     void Update()
@@ -169,9 +183,13 @@ void Start()
         Vector2 pos = rb.position;
         pos = PixelSnapper.SnapToPixelGrid(pos);
 
-        // Clamp the player's position within the box
-        pos.x = Mathf.Clamp(pos.x, minEdgePos.x, maxEdgePos.x);
-        pos.y = Mathf.Clamp(pos.y, minEdgePos.y, maxEdgePos.y);
+        // Get the camera's viewport boundaries
+        Vector3 minCameraPos = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Vector3 maxCameraPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+
+        // Clamp the player's position within the camera's viewport
+        pos.x = Mathf.Clamp(pos.x, minCameraPos.x, maxCameraPos.x);
+        pos.y = Mathf.Clamp(pos.y, minCameraPos.y, maxCameraPos.y);
 
         rb.position = pos;
     }
