@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teleporter : MonoBehaviour
 {
+    public string sceneName = "The Rooms";
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class Teleporter : MonoBehaviour
     {
         if (other.gameObject.name == "Guyo")
         {
-            other.transform.position = new Vector3(0, 20, 0);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

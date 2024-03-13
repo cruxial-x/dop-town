@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/The Pond.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/The Rooms.unity
+    guid: fc82d516aeb71f64da8cb10366beafbb
   m_configObjects: {}

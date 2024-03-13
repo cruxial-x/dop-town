@@ -5059,6 +5059,8 @@ MonoBehaviour:
   player: {fileID: 1672951739}
   minCameraPos: {x: -1, y: -8.82, z: -10}
   maxCameraPos: {x: 0, y: 0, z: -10}
+  minEdgePos: {x: -12.119155, y: -14.445, z: -10}
+  maxEdgePos: {x: 11.119155, y: 5.625, z: -10}
 --- !u!1 &737432146
 GameObject:
   m_ObjectHideFlags: 0
@@ -5130,7 +5132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &779753898
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5362,37 +5364,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 779753900}
-    m_ColliderPaths:
-    - - X: 9350004
-        Y: 134200000
-      - X: -215950016
-        Y: 134200000
-      - X: -215950016
-        Y: 118096000
-      - X: 9350004
-        Y: 118096000
-  - m_Collider: {fileID: 779753901}
-    m_ColliderPaths:
-    - - X: 9350004
-        Y: -88572008
-      - X: -215950016
-        Y: -88572008
-      - X: -215950016
-        Y: -104676008
-      - X: 9350004
-        Y: -104676008
-  - m_Collider: {fileID: 779753902}
-    m_ColliderPaths:
-    - - X: -213300000
-        Y: 577059968
-      - X: -227100016
-        Y: 577059968
-      - X: -227100016
-        Y: -791780032
-      - X: -213300000
-        Y: -791780032
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -21.330029, y: -79.178}
@@ -9049,6 +9021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf447827522d2c4492654140316660f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: The Rooms
 --- !u!61 &1672771813
 BoxCollider2D:
   m_ObjectHideFlags: 0
