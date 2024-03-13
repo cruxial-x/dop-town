@@ -8,10 +8,18 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Vector3 minCameraPos;
     [SerializeField] Vector3 maxCameraPos;
+    public Vector3 minEdgePos;
+    public Vector3 maxEdgePos;
 
     void Start()
     {
+        // Get the camera's size
+        float height = Camera.main.orthographicSize * 2;
+        float width = height * Camera.main.aspect;
 
+        // Calculate the bounds for the edges of the camera
+        minEdgePos = minCameraPos - new Vector3(width / 2, height / 2, 0);
+        maxEdgePos = maxCameraPos + new Vector3(width / 2, height / 2, 0);
     }
 
     void LateUpdate()
@@ -28,14 +36,6 @@ public class CameraFollow : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Get the camera's size
-        float height = Camera.main.orthographicSize * 2;
-        float width = height * Camera.main.aspect;
-
-        // Calculate the bounds for the edges of the camera
-        Vector3 minEdgePos = minCameraPos - new Vector3(width / 2, height / 2, 0);
-        Vector3 maxEdgePos = maxCameraPos + new Vector3(width / 2, height / 2, 0);
-
         // Draw a red line box representing the camera bounds
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(minEdgePos.x, minEdgePos.y, 0), new Vector3(maxEdgePos.x, minEdgePos.y, 0));

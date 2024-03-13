@@ -67,19 +67,28 @@ public class PlayerController : MonoBehaviour
     public Sprite keydownImage;
     private Sprite originalImage;
     private bool canPerformAction = false;
+    private Vector2 minEdgePos;
+    private Vector2 maxEdgePos;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+// Start is called before the first frame update
+void Start()
+{
+    animator = GetComponent<Animator>();
+    rb = GetComponent<Rigidbody2D>();
 
-        // Ignore collisions with fish
-        int playerLayer = LayerMask.NameToLayer("Default");
-        int fishLayer = LayerMask.NameToLayer("Water");
-        Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
-        movementStrategy = enableDiagonalMovement ? new DiagonalMovement() : new CardinalMovement();
-    }
+    // Ignore collisions with fish
+    int playerLayer = LayerMask.NameToLayer("Default");
+    int fishLayer = LayerMask.NameToLayer("Water");
+    Physics2D.IgnoreLayerCollision(playerLayer, fishLayer);
+    movementStrategy = enableDiagonalMovement ? new DiagonalMovement() : new CardinalMovement();
+
+    // Get a reference to the CameraController script
+    CameraFollow cameraController = Camera.main.GetComponent<CameraFollow>();
+
+    // Initialize the camera boundaries
+    minEdgePos = cameraController.minEdgePos;
+    maxEdgePos = cameraController.maxEdgePos;
+}
 
     // Update is called once per frame
     void Update()
@@ -87,26 +96,26 @@ public class PlayerController : MonoBehaviour
         // Movement
         movementStrategy.HandleMovement(ref moveHorizontal, ref moveVertical);
 
-        // Update the last cast direction if the player is moving
-        Vector3 currentDirection = new Vector3(moveHorizontal, moveVertical, 0).normalized;
-        if (currentDirection.magnitude != 0)
-        {
-            lastCastDirection = currentDirection;
-        }
+        // // Update the last cast direction if the player is moving
+        // Vector3 currentDirection = new Vector3(moveHorizontal, moveVertical, 0).normalized;
+        // if (currentDirection.magnitude != 0)
+        // {
+        //     lastCastDirection = currentDirection;
+        // }
 
-        //Fishing
-        // Check if the player has pressed the cast button (e.g., the space bar)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Set the target position to some position in the direction of the player's movement
-            targetPosition = transform.position + lastCastDirection * castDistance;
-            // Cast the line to the target position
-            StartCoroutine(fishingRod.CastLine(targetPosition));
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(fishingRod.ReelIn());
-        }
+        // //Fishing
+        // // Check if the player has pressed the cast button (e.g., the space bar)
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     // Set the target position to some position in the direction of the player's movement
+        //     targetPosition = transform.position + lastCastDirection * castDistance;
+        //     // Cast the line to the target position
+        //     StartCoroutine(fishingRod.CastLine(targetPosition));
+        // }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     StartCoroutine(fishingRod.ReelIn());
+        // }
 
         // If the absolute value of the horizontal or vertical movement is less than the animation threshold, consider it as zero
         float effectiveMoveHorizontal = Mathf.Abs(moveHorizontal) < animationThreshold ? 0 : moveHorizontal;
@@ -159,6 +168,11 @@ public class PlayerController : MonoBehaviour
 
         Vector2 pos = rb.position;
         pos = PixelSnapper.SnapToPixelGrid(pos);
+
+        // Clamp the player's position within the box
+        pos.x = Mathf.Clamp(pos.x, minEdgePos.x, maxEdgePos.x);
+        pos.y = Mathf.Clamp(pos.y, minEdgePos.y, maxEdgePos.y);
+
         rb.position = pos;
     }
     void OnTriggerEnter2D(Collider2D other)
