@@ -184,7 +184,7 @@ void Start()
         rb.velocity = movement;
 
         Vector2 pos = rb.position;
-        pos = PixelSnapper.SnapToPixelGrid(pos);
+        pos = PixelSnapper.SnapToPixelGrid(gameObject, pos);
 
         // Get the camera's viewport boundaries
         Vector3 minCameraPos = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
