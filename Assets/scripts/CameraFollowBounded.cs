@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
 
         // Convert the position to PPU so you don't get decimal place positions
         Vector3 pos = new Vector3(posX, posY, transform.position.z);
-        pos = PixelSnapper.SnapToPixelGrid(gameObject, pos);
+        pos = PixelSnapper.SnapToPixelGrid(pos);
 
         transform.position = new Vector3(posX, posY, transform.position.z);
     }
