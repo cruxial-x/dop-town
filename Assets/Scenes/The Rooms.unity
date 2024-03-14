@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 2590219178424635627, guid: 2f85c3316fd29754ebbea3bc775ef3d9, type: 3}
-  numberOfFish: 10
+  numberOfFish: 3
   spawnBounds:
     serializedVersion: 2
     x: -18
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 2590219178424635627, guid: 2f85c3316fd29754ebbea3bc775ef3d9, type: 3}
-  numberOfFish: 10
+  numberOfFish: 3
   spawnBounds:
     serializedVersion: 2
     x: 8
