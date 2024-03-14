@@ -16,6 +16,7 @@ public class FishController : MonoBehaviour
     {
         FishSpawner[] fishSpawners = FindObjectsOfType<FishSpawner>();
         float closestDistance = Mathf.Infinity;
+        FishSpawner closestFishSpawner = null;  // Declare closestFishSpawner outside the foreach loop
 
         foreach (FishSpawner fishSpawner in fishSpawners)
         {
@@ -23,9 +24,15 @@ public class FishController : MonoBehaviour
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                FishSpawner closestFishSpawner = fishSpawner;
+                closestFishSpawner = fishSpawner;  // Update closestFishSpawner, not declare a new one
             }
-        }        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        if (closestFishSpawner != null)  // Check if a FishSpawner was found
+        {
+            spawnBounds = closestFishSpawner.spawnBounds;  // Set spawnBounds to the bounds of the closest FishSpawner
+        }
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color color = spriteRenderer.color;
         color.a = 0.5f;
         spriteRenderer.color = color;

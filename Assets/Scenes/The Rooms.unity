@@ -428,7 +428,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 9b2cf8ccfebeff040aca732cb25b2efa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -610,6 +610,58 @@ PolygonCollider2D:
       - {x: 5.125464, y: 3.507554}
       - {x: 2.2010565, y: 0.5590171}
   m_UseDelaunayMesh: 0
+--- !u!1 &545181610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545181612}
+  - component: {fileID: 545181611}
+  m_Layer: 0
+  m_Name: Fishes1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &545181611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545181610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c940478d731121747853a723760adf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishPrefab: {fileID: 2590219178424635627, guid: 2f85c3316fd29754ebbea3bc775ef3d9, type: 3}
+  numberOfFish: 10
+  spawnBounds:
+    serializedVersion: 2
+    x: -18
+    y: -5.25
+    width: 12
+    height: 12
+--- !u!4 &545181612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545181610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.92, y: 0.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656582592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,8 +2076,8 @@ MonoBehaviour:
   player: {fileID: 1026782312}
   minCameraPos: {x: -28, y: -11.5, z: -10}
   maxCameraPos: {x: 14, y: 11.5, z: -10}
-  minEdgePos: {x: -40.60738, y: -17.125, z: -10}
-  maxEdgePos: {x: 26.60738, y: 17.125, z: -10}
+  minEdgePos: {x: -39.095863, y: -17.125, z: -10}
+  maxEdgePos: {x: 25.095865, y: 17.125, z: -10}
 --- !u!114 &1708470806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,6 +2378,58 @@ Transform:
   - {fileID: 1474359234}
   m_Father: {fileID: 382348681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2138056395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2138056397}
+  - component: {fileID: 2138056396}
+  m_Layer: 0
+  m_Name: Fishes2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2138056396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138056395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c940478d731121747853a723760adf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishPrefab: {fileID: 2590219178424635627, guid: 2f85c3316fd29754ebbea3bc775ef3d9, type: 3}
+  numberOfFish: 10
+  spawnBounds:
+    serializedVersion: 2
+    x: 7
+    y: 2
+    width: 12
+    height: 8
+--- !u!4 &2138056397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138056395}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.6, y: 5.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2335,3 +2439,5 @@ SceneRoots:
   - {fileID: 1633269635}
   - {fileID: 382348681}
   - {fileID: 269894263}
+  - {fileID: 545181612}
+  - {fileID: 2138056397}
