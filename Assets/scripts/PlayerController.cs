@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private IMovementStrategy movementStrategy;
 
-    [Tooltip("Threshold for changing walking animation")]
-    [SerializeField] private float animationThreshold = 0.1f;
     // public FishingRod fishingRod;
     // private Vector3 targetPosition;
     // private Vector3 lastCastDirection = Vector3.up; // Default to up
@@ -129,23 +127,21 @@ void Start()
         //     StartCoroutine(fishingRod.ReelIn());
         // }
 
-        // If the absolute value of the horizontal or vertical movement is less than the animation threshold, consider it as zero
-        float effectiveMoveHorizontal = Mathf.Abs(moveHorizontal) < animationThreshold ? 0 : moveHorizontal;
-        float effectiveMoveVertical = Mathf.Abs(moveVertical) < animationThreshold ? 0 : moveVertical;
+        PreventMoonwalking(); // Comment this line out to moonwalk
 
-        isMoving = effectiveMoveHorizontal != 0 || effectiveMoveVertical != 0;
+        isMoving = moveHorizontal != 0 || moveVertical != 0;
 
-        if (effectiveMoveHorizontal < 0)
+        if (moveHorizontal < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (effectiveMoveHorizontal > 0 || (effectiveMoveHorizontal == 0 && effectiveMoveVertical != 0))
+        else if (moveHorizontal > 0 || (moveHorizontal == 0 && moveVertical != 0))
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        animator.SetBool("movingUp", effectiveMoveVertical > 0 && effectiveMoveHorizontal == 0);
-        animator.SetBool("movingDown", effectiveMoveVertical < 0 && effectiveMoveHorizontal == 0);
+        animator.SetBool("movingUp", moveVertical > 0 && moveHorizontal == 0);
+        animator.SetBool("movingDown", moveVertical < 0 && moveHorizontal == 0);
         animator.SetBool("isMoving", isMoving);
 
         if (canPerformAction)
@@ -171,7 +167,16 @@ void Start()
             }
         }
     }
-
+    void PreventMoonwalking()
+    {
+        if((Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow)))
+        {
+            moveHorizontal = 0;
+        }
+        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow))){
+            moveVertical = 0;
+        }
+    }
     // FixedUpdate is called once per physics frame
     void FixedUpdate()
     {
