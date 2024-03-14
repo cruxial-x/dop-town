@@ -1728,7 +1728,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1026782309
 Animator:
@@ -2469,8 +2469,8 @@ MonoBehaviour:
   player: {fileID: 1026782312}
   minCameraPos: {x: -28, y: -11.5, z: -10}
   maxCameraPos: {x: 14, y: 11.5, z: -10}
-  minEdgePos: {x: -40.60738, y: -17.125, z: -10}
-  maxEdgePos: {x: 26.60738, y: 17.125, z: -10}
+  minEdgePos: {x: -39.102165, y: -17.125, z: -10}
+  maxEdgePos: {x: 25.102167, y: 17.125, z: -10}
 --- !u!114 &1708470806
 MonoBehaviour:
   m_ObjectHideFlags: 0
