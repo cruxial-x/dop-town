@@ -59,16 +59,14 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Threshold for changing walking animation")]
     [SerializeField] private float animationThreshold = 0.1f;
-    public FishingRod fishingRod;
-    private Vector3 targetPosition;
-    private Vector3 lastCastDirection = Vector3.up; // Default to up
+    // public FishingRod fishingRod;
+    // private Vector3 targetPosition;
+    // private Vector3 lastCastDirection = Vector3.up; // Default to up
     public float castDistance = 3f;
     public GameObject actionUI;
     public Sprite keydownImage;
     private Sprite originalImage;
     private bool canPerformAction = false;
-    private Vector2 minEdgePos;
-    private Vector2 maxEdgePos;
 
 // Start is called before the first frame update
 void Start()
