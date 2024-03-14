@@ -6,8 +6,7 @@ public class FishController : MonoBehaviour
     public float minSpeed = 1f;
     public float maxSpeed = 5f;
     public float rotationSpeed = 2f;
-    public Rect moveBounds;
-
+    private Rect spawnBounds;
     private float currentSpeed;
     private Vector2 targetPosition;
     private float targetRotation;
@@ -15,7 +14,18 @@ public class FishController : MonoBehaviour
 
     private void Start()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        FishSpawner[] fishSpawners = FindObjectsOfType<FishSpawner>();
+        float closestDistance = Mathf.Infinity;
+
+        foreach (FishSpawner fishSpawner in fishSpawners)
+        {
+            float distance = Vector3.Distance(transform.position, fishSpawner.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                FishSpawner closestFishSpawner = fishSpawner;
+            }
+        }        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color color = spriteRenderer.color;
         color.a = 0.5f;
         spriteRenderer.color = color;
@@ -33,8 +43,8 @@ public class FishController : MonoBehaviour
 
             currentSpeed = Random.Range(minSpeed, maxSpeed);
             targetPosition = new Vector2(
-                Random.Range(moveBounds.min.x, moveBounds.max.x),
-                Random.Range(moveBounds.min.y, moveBounds.max.y)
+                Random.Range(spawnBounds.min.x, spawnBounds.max.x),
+                Random.Range(spawnBounds.min.y, spawnBounds.max.y)
             );
 
             Vector2 direction = targetPosition - (Vector2)transform.position;
@@ -66,11 +76,5 @@ public class FishController : MonoBehaviour
         {
             targetPosition = other.transform.position;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(moveBounds.center, moveBounds.size);
     }
 }

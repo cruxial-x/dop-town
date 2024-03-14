@@ -6,12 +6,10 @@ public class FishSpawner : MonoBehaviour
 {
     public GameObject fishPrefab;
     public int numberOfFish = 10;
-    private Rect spawnBounds;
+    public Rect spawnBounds;
     // Start is called before the first frame update
     void Start()
     {
-        FishController fishController = fishPrefab.GetComponent<FishController>();
-        spawnBounds = fishController.moveBounds;
         for (int i = 0; i < numberOfFish; i++)
         {
             SpawnFish();
@@ -32,5 +30,10 @@ public class FishSpawner : MonoBehaviour
     void Update()
     {
         
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(spawnBounds.center, spawnBounds.size);
     }
 }
