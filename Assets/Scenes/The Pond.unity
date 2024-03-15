@@ -5043,8 +5043,8 @@ MonoBehaviour:
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_UpscaleRT: 0
-  m_PixelSnapping: 1
-  m_CropFrameX: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
   m_CropFrameY: 1
   m_StretchFill: 0
 --- !u!114 &519420034
@@ -5062,8 +5062,8 @@ MonoBehaviour:
   player: {fileID: 1001295082}
   minCameraPos: {x: -1, y: -8.82, z: -10}
   maxCameraPos: {x: 0, y: 0, z: -10}
-  minEdgePos: {x: -12.102167, y: -14.445, z: -10}
-  maxEdgePos: {x: 11.102167, y: 5.625, z: -10}
+  minEdgePos: {x: -12.112941, y: -14.445, z: -10}
+  maxEdgePos: {x: 11.112941, y: 5.625, z: -10}
 --- !u!1 &737432146
 GameObject:
   m_ObjectHideFlags: 0

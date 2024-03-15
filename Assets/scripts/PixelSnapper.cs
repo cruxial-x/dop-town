@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public static class PixelSnapper
 {
     private static float PixelsPerUnit;
+    private static bool PixelSnapping;
     private static Dictionary<GameObject, Vector2> remainders2D = new Dictionary<GameObject, Vector2>();
     private static Dictionary<GameObject, Vector3> remainders3D = new Dictionary<GameObject, Vector3>();
 
@@ -13,10 +14,15 @@ public static class PixelSnapper
     {
         PixelPerfectCamera pixelPerfectCamera = Camera.main.GetComponent<PixelPerfectCamera>();
         PixelsPerUnit = pixelPerfectCamera.assetsPPU;
+        PixelSnapping = pixelPerfectCamera.pixelSnapping;
     }
 
     public static Vector2 SnapToPixelGrid(GameObject obj, Vector2 position)
     {
+        if(!PixelSnapping)
+        {
+            return position;
+        }
         if (!remainders2D.ContainsKey(obj))
         {
             remainders2D[obj] = Vector2.zero;
@@ -52,6 +58,10 @@ public static class PixelSnapper
 
     public static Vector3 SnapToPixelGrid(GameObject obj, Vector3 position)
     {
+        if(!PixelSnapping)
+        {
+            return position;
+        }
         if (!remainders3D.ContainsKey(obj))
         {
             remainders3D[obj] = Vector3.zero;
@@ -86,6 +96,10 @@ public static class PixelSnapper
     }
     public static Vector2 SnapToPixelGrid(Vector2 position)
     {
+        if(!PixelSnapping)
+        {
+            return position;
+        }
         position.x = Mathf.Round(position.x * PixelsPerUnit) / PixelsPerUnit;
         position.y = Mathf.Round(position.y * PixelsPerUnit) / PixelsPerUnit;
         return position;
@@ -93,6 +107,10 @@ public static class PixelSnapper
 
     public static Vector3 SnapToPixelGrid(Vector3 position)
     {
+        if(!PixelSnapping)
+        {
+            return position;
+        }
         position.x = Mathf.Round(position.x * PixelsPerUnit) / PixelsPerUnit;
         position.y = Mathf.Round(position.y * PixelsPerUnit) / PixelsPerUnit;
         return position;
