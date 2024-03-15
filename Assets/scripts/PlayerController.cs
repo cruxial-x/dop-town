@@ -208,7 +208,10 @@ void Start()
     {
         if (other.gameObject.CompareTag("Action"))
         {
-            actionUI.SetActive(false);
+            if(actionUI.activeSelf)
+            {
+                actionUI.SetActive(false);
+            }
             canPerformAction = false;
         }
     }

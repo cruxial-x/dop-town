@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_RefResolutionY: 180
   m_UpscaleRT: 0
   m_PixelSnapping: 0
-  m_CropFrameX: 0
+  m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 0
 --- !u!114 &519420034
@@ -5433,6 +5433,14 @@ PrefabInstance:
       propertyPath: signTextObject
       value: 
       objectReference: {fileID: 2024103782}
+    - target: {fileID: 5414664013840995168, guid: 82e78b3d04cb873479945ae237f715ec, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414664013840995168, guid: 82e78b3d04cb873479945ae237f715ec, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7144266735479657420, guid: 82e78b3d04cb873479945ae237f715ec, type: 3}
       propertyPath: m_Name
       value: sign (1)
@@ -6887,7 +6895,7 @@ MonoBehaviour:
   moveSpeed: 3
   enableDiagonalMovement: 1
   castDistance: 3
-  actionUI: {fileID: 0}
+  actionUI: {fileID: 25173365}
   keydownImage: {fileID: -2031977345, guid: cecfd417f6addc346936dee61c46050b, type: 3}
 --- !u!4 &1001295082
 Transform:
@@ -9445,7 +9453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf447827522d2c4492654140316660f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: The Rooms
+  sceneName: The Void
 --- !u!61 &1672771813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14377,6 +14385,10 @@ PrefabInstance:
       propertyPath: signTextObject
       value: 
       objectReference: {fileID: 2024103782}
+    - target: {fileID: 5414664013840995168, guid: 82e78b3d04cb873479945ae237f715ec, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7144266735479657420, guid: 82e78b3d04cb873479945ae237f715ec, type: 3}
       propertyPath: m_Name
       value: sign
@@ -14435,8 +14447,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 737432148}
   - {fileID: 1001295082}
+  - {fileID: 737432148}
   - {fileID: 779753899}
   - {fileID: 4586611978265296291}
   - {fileID: 2020235259}
