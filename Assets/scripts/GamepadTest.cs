@@ -17,13 +17,15 @@ public class GamepadTest : MonoBehaviour
         }
     }
 
-        for (int i = 0; i <= 10; i++)
+    string[] axisNames = { "Horizontal", "Vertical" };
+
+    for (int i = 0; i < axisNames.Length; i++)
+    {
+        float axisValue = Input.GetAxis(axisNames[i]);
+        if (axisValue != 0)
         {
-            float axisValue = Input.GetAxis("Axis " + i);
-            if (axisValue != 0)
-            {
-                Debug.Log("Axis " + i + " value: " + axisValue);
-            }
+            Debug.Log(axisNames[i] + " value: " + axisValue);
         }
+    }
     }
 }
