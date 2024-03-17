@@ -19,7 +19,7 @@ public class RadioController : MonoBehaviour
     {
         if (playerNearRadio)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Submit"))
             {
                 if (audioSource.isPlaying)
                 {
